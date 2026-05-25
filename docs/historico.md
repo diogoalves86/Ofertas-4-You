@@ -15,3 +15,5 @@
 - Criada documentacao inicial do projeto.
 - Validado lint e build local.
 - Corrigida instalacao Docker para copiar `.npmrc` antes de executar `npm ci`.
+- Criada migracao inicial do Payload e configurada aplicacao automatica em producao.
+- Ajustada rota `/saude` para validar tambem a conexao com o Payload/Postgres.

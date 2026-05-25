@@ -54,6 +54,21 @@ docker compose up -d --build
 As imagens copiam o `.npmrc` junto com `package.json` e `package-lock.json` para garantir que
 `npm ci` use a mesma resolucao de dependencias dentro e fora do container.
 
+## Banco e migracoes
+
+O esquema do Payload em producao e criado pelas migracoes versionadas em `src/migrations`.
+Quando o app inicializa o Payload em `NODE_ENV=production`, as migracoes configuradas em
+`payload.config.ts` sao aplicadas automaticamente no Postgres, se ainda nao tiverem rodado.
+
+Depois de subir um banco novo, acesse:
+
+```txt
+http://localhost:3002/admin/create-first-user
+```
+
+Essa tela cria o primeiro usuario administrativo. Depois disso, o painel principal fica em
+`/admin`.
+
 ## Verificacao
 
 ```txt
@@ -61,3 +76,4 @@ http://localhost:3002/saude
 ```
 
 Deve responder com status `ok`.
+Tambem valida a conexao com o Payload/Postgres e retorna `503` quando o banco nao estiver pronto.

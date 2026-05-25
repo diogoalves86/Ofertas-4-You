@@ -13,6 +13,7 @@ import { Paginas } from './colecoes/Paginas'
 import { Produtos } from './colecoes/Produtos'
 import { Usuarios } from './colecoes/Usuarios'
 import { ConfiguracoesSite } from './globais/ConfiguracoesSite'
+import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,9 +33,11 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
+    migrationDir: path.resolve(dirname, 'migrations'),
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
+    prodMigrations: migrations,
   }),
   sharp,
   plugins: [],
