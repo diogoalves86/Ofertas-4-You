@@ -7,6 +7,7 @@ export const Usuarios: CollectionConfig = {
     plural: 'Usuarios',
   },
   admin: {
+    group: 'Sistema',
     useAsTitle: 'email',
   },
   auth: true,

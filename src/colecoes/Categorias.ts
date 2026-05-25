@@ -13,6 +13,7 @@ export const Categorias: CollectionConfig = {
     read: () => true,
   },
   admin: {
+    group: 'Catálogo',
     useAsTitle: 'nome',
     defaultColumns: ['nome', 'tipo', 'slug'],
   },

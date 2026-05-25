@@ -10,7 +10,7 @@ export function PaginaSimples({ children, descricao, titulo }: Propriedades) {
   return (
     <section className="paginaSimples">
       <div className="cabecaPagina">
-        <p className="chapeu">Ofertas 4You</p>
+        <p className="chapeu">Ofertas 4You editorial</p>
         <h1>{titulo}</h1>
         <p>{descricao}</p>
       </div>

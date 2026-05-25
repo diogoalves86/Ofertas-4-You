@@ -11,8 +11,10 @@ export function CartaoProduto({ produto }: Propriedades) {
   const nomeLoja = obterNomeRelacao(produto.loja)
   const nomeCategoria = obterNomeRelacao(produto.categoria)
   const urlImagem = obterUrlMidia(produto.imagem)
+  const textoImagem = nomeCategoria || produto.titulo
   const destino = produto.link_afiliado || `/ofertas/${produto.slug}`
   const destinoExterno = destino.startsWith('http')
+  const rotuloAcao = destinoExterno ? 'Ir para oferta' : 'Ver detalhes'
 
   return (
     <CartaoAnimado className="cartaoProduto">
@@ -21,8 +23,9 @@ export function CartaoProduto({ produto }: Propriedades) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={urlImagem} alt={produto.titulo} />
         ) : (
-          <span>{nomeCategoria || 'Oferta'}</span>
+          <span className="placeholderMiniatura">{textoImagem}</span>
         )}
+        {nomeCategoria && <span className="seloMiniatura">{nomeCategoria}</span>}
       </Link>
 
       <div className="conteudoCartao">
@@ -44,10 +47,11 @@ export function CartaoProduto({ produto }: Propriedades) {
         <a
           className="botaoPrimario"
           href={destino}
+          aria-label={`${rotuloAcao}: ${produto.titulo}`}
           rel={destinoExterno ? 'nofollow sponsored noopener noreferrer' : undefined}
           target={destinoExterno ? '_blank' : undefined}
         >
-          Ver oferta
+          {rotuloAcao}
         </a>
       </div>
     </CartaoAnimado>

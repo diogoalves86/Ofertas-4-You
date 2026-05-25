@@ -13,6 +13,7 @@ export const Avaliacoes: CollectionConfig = {
     read: () => true,
   },
   admin: {
+    group: 'Editorial',
     useAsTitle: 'titulo',
     defaultColumns: ['titulo', 'categoria', 'destaque', 'publicado_em', '_status'],
   },

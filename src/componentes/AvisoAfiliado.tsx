@@ -1,8 +1,8 @@
 export function AvisoAfiliado() {
   return (
     <aside className="avisoAfiliado">
-      O Ofertas 4You pode receber comissao por compras feitas a partir dos links indicados. O
-      preco final nao muda para voce.
+      Transparência: o Ofertas 4You pode receber comissão por compras feitas a partir dos links
+      indicados. O preço final não muda para você.
     </aside>
   )
 }

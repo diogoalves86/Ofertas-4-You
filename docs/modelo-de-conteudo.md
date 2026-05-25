@@ -1,12 +1,14 @@
-# Modelo de conteudo
+# Modelo de conteúdo
 
-O Payload CMS organiza o conteudo do Ofertas 4You em colecoes e configuracoes globais.
+O Payload CMS organiza o conteúdo do Ofertas 4You em coleções e configurações globais.
 
-## Colecoes
+## Coleções
 
-### Usuarios
+### Usuários
 
 Usada para acesso ao painel administrativo em `/admin`.
+
+Grupo no painel: Sistema.
 
 Campos principais:
 
@@ -14,9 +16,11 @@ Campos principais:
 - `password`
 - `nome`
 
-### Midias
+### Mídias
 
 Armazena imagens de produtos, posts, logos e banners.
+
+Grupo no painel: Editorial.
 
 Campos principais:
 
@@ -26,6 +30,8 @@ Campos principais:
 ### Categorias
 
 Agrupa produtos e reviews.
+
+Grupo no painel: Catálogo.
 
 Campos principais:
 
@@ -39,6 +45,8 @@ Campos principais:
 ### Lojas
 
 Representa parceiros como Amazon, Mercado Livre, Shopee, Hotmart e Monetizze.
+
+Grupo no painel: Catálogo.
 
 Campos principais:
 
@@ -54,6 +62,8 @@ Campos principais:
 ### Produtos
 
 Representa ofertas afiliadas.
+
+Grupo no painel: Catálogo.
 
 Campos principais:
 
@@ -77,11 +87,27 @@ Campos principais:
 - `aviso_afiliado`
 - `seo`
 
-Produtos usam drafts para permitir edicao antes da publicacao.
+Produtos usam drafts para permitir edição antes da publicação.
 
-### Avaliacoes
+Uso na frente pública:
+
+- `titulo`, `slug` e `resumo` alimentam cards, H1, metadados e JSON-LD.
+- `categoria` e `loja` aparecem como etiquetas de contexto.
+- `imagem.alt` deve ser preenchido, pois é usado como texto alternativo e caption nos dados estruturados.
+- `vantagens` alimenta a seção "Quando essa opção faz sentido".
+- `desvantagens` alimenta a seção "Pontos de atenção".
+- `nota` alimenta a avaliação editorial no JSON-LD quando existir.
+- `link_afiliado` define o CTA externo. Quando estiver ausente, a página aponta para um guia relacionado.
+- `destaque` controla a presença na home quando houver conteúdo publicado.
+
+Regra de SEO: `Offer` só deve ser gerado quando `link_afiliado` apontar para uma URL externa real.
+Não preencher preço, disponibilidade ou promessa comercial se a informação não estiver atualizada.
+
+### Avaliações
 
 Representa reviews, comparativos e guias de compra.
+
+Grupo no painel: Editorial.
 
 Campos principais:
 
@@ -99,11 +125,22 @@ Campos principais:
 - `destaque`
 - `seo`
 
-Avaliacoes usam drafts para fluxo editorial.
+Avaliações usam drafts para fluxo editorial.
 
-### Paginas
+Uso na frente pública:
 
-Conteudo institucional gerenciavel no CMS.
+- `titulo`, `slug` e `resumo` alimentam cards, H1, metadados e JSON-LD.
+- `categoria`, `autor` e `tempo_leitura` aparecem como etiquetas do guia.
+- `imagem.alt` deve ser preenchido quando houver imagem editorial.
+- `perguntas_frequentes` alimenta a seção de FAQ e o JSON-LD `FAQPage`.
+- `publicado_em`, `createdAt` e `updatedAt` podem alimentar datas de `Article` e sitemap.
+- `produtos_relacionados` deve ser usado em evoluções futuras para CTAs mais específicos.
+
+### Páginas
+
+Conteúdo institucional gerenciável no CMS.
+
+Grupo no painel: Editorial.
 
 Campos principais:
 
@@ -113,9 +150,31 @@ Campos principais:
 - `conteudo`
 - `seo`
 
-## Configuracoes globais
+## Conteúdo público inicial
 
-### Configuracoes do site
+O arquivo `src/dados/conteudoPublico.ts` contém conteúdo fallback para produtos e avaliações.
+Ele é usado quando:
+
+- o Payload não está disponível;
+- `DESABILITAR_PAYLOAD_PUBLICO=true`;
+- ainda não existem documentos publicados para a consulta.
+
+Esse conteúdo inicial deve continuar coerente com a estratégia editorial, porque ele aparece em
+desenvolvimento, pode ser usado em builds locais e serve como referência de copy para cadastros
+reais no Payload.
+
+Itens fallback atuais:
+
+- TV 4K para sala clara.
+- Smartphone intermediário.
+- Curso digital com checkout parceiro.
+- Guia de TVs 4K.
+- Guia de smartphone intermediário versus topo antigo.
+- Guia de curso online.
+
+## Configurações globais
+
+### Configurações do site
 
 Campos principais:
 
@@ -127,5 +186,13 @@ Campos principais:
 
 ## Regra editorial
 
-Toda oferta deve ter link afiliado claro e loja parceira definida. Todo review deve poder apontar
-para produtos relacionados ou chamadas de afiliado.
+Toda oferta deve ter loja parceira definida e, quando houver CTA de compra, link afiliado claro.
+Todo review deve poder apontar para produtos relacionados, ofertas ou chamadas de afiliado.
+
+Para manter confiança e SEO:
+
+- usar acentos e português correto nas copies públicas;
+- evitar prometer desconto, disponibilidade ou preço quando o dado não estiver atualizado;
+- manter aviso de afiliado visível;
+- preencher `alt` em imagens editoriais;
+- publicar apenas slugs finais, estáveis e pesquisáveis.

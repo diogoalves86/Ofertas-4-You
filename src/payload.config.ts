@@ -21,6 +21,21 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Usuarios.slug,
+    avatar: 'default',
+    dateFormat: 'dd/MM/yyyy HH:mm',
+    meta: {
+      titleSuffix: '- Ofertas 4You',
+    },
+    components: {
+      actions: ['@/componentes/admin/PainelAdmin#AcaoVerSiteAdmin'],
+      beforeDashboard: ['@/componentes/admin/PainelAdmin#DashboardAdmin'],
+      beforeNav: ['@/componentes/admin/PainelAdmin#MarcaNavegacaoAdmin'],
+      afterNav: ['@/componentes/admin/PainelAdmin#RodapeNavegacaoAdmin'],
+      graphics: {
+        Icon: '@/componentes/admin/PainelAdmin#IconeAdmin',
+        Logo: '@/componentes/admin/PainelAdmin#LogoAdmin',
+      },
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },

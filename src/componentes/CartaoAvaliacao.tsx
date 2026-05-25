@@ -14,16 +14,19 @@ export function CartaoAvaliacao({ avaliacao }: Propriedades) {
     <CartaoAnimado className="cartaoAvaliacao">
       <div className="linhaEtiquetas">
         {nomeCategoria && <span>{nomeCategoria}</span>}
-        {avaliacao.tempo_leitura && <span>{avaliacao.tempo_leitura} min</span>}
+        {avaliacao.tempo_leitura && <span>{avaliacao.tempo_leitura} min de leitura</span>}
       </div>
 
       <h3>
         <Link href={`/avaliacoes/${avaliacao.slug}`}>{avaliacao.titulo}</Link>
       </h3>
       {avaliacao.resumo && <p>{avaliacao.resumo}</p>}
-      <Link className="linkLeitura" href={`/avaliacoes/${avaliacao.slug}`}>
-        Ler review
-      </Link>
+      <div className="rodapeAvaliacao">
+        {avaliacao.autor && <span>{avaliacao.autor}</span>}
+        <Link className="linkLeitura" href={`/avaliacoes/${avaliacao.slug}`}>
+          Ler guia
+        </Link>
+      </div>
     </CartaoAnimado>
   )
 }

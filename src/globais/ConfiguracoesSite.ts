@@ -2,7 +2,10 @@ import type { GlobalConfig } from 'payload'
 
 export const ConfiguracoesSite: GlobalConfig = {
   slug: 'configuracoes-site',
-  label: 'Configuracoes do site',
+  label: 'Configurações do site',
+  admin: {
+    group: 'Sistema',
+  },
   access: {
     read: () => true,
   },
@@ -23,7 +26,7 @@ export const ConfiguracoesSite: GlobalConfig = {
     {
       name: 'descricao_padrao',
       type: 'textarea',
-      label: 'Descricao padrao',
+      label: 'Descrição padrão',
       defaultValue:
         'Ofertas, reviews e guias de compra com curadoria para encontrar boas oportunidades em lojas parceiras.',
     },
@@ -32,7 +35,7 @@ export const ConfiguracoesSite: GlobalConfig = {
       type: 'textarea',
       label: 'Aviso de afiliado',
       defaultValue:
-        'O Ofertas 4You pode receber comissao quando voce compra por links indicados. Isso nao altera o preco final para voce.',
+        'O Ofertas 4You pode receber comissão quando você compra por links indicados. Isso não altera o preço final para você.',
     },
     {
       name: 'redes_sociais',

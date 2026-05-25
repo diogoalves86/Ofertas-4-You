@@ -7,14 +7,16 @@ export function Rodape() {
     <footer className="rodape">
       <div>
         <strong>Ofertas 4You</strong>
-        <p>Reviews, comparativos e ofertas com links para lojas parceiras.</p>
+        <p>Guias de compra, reviews e ofertas com links para lojas parceiras.</p>
       </div>
       <nav aria-label="Links institucionais">
+        <Link href="/ofertas">Ofertas</Link>
+        <Link href="/avaliacoes">Guias</Link>
         <Link href="/sobre">Sobre</Link>
         <Link href="/aviso-de-afiliado">Aviso de afiliado</Link>
         <Link href="/politica-de-privacidade">Privacidade</Link>
         <Link href="/termos-de-uso">Termos</Link>
-        <Link href="/exclusao-de-dados">Exclusao de dados</Link>
+        <Link href="/exclusao-de-dados">Exclusão de dados</Link>
         <BotaoPreferenciasCookies />
       </nav>
     </footer>

@@ -13,6 +13,7 @@ export const Paginas: CollectionConfig = {
     read: () => true,
   },
   admin: {
+    group: 'Editorial',
     useAsTitle: 'titulo',
     defaultColumns: ['titulo', 'slug', '_status'],
   },

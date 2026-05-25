@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { PaginaSimples } from '@/componentes/PaginaSimples'
+import { criarMetadataPagina, criarTituloDeSlug } from '@/utilitarios/seo'
 
 type Propriedades = {
   params: Promise<{
@@ -10,11 +11,14 @@ type Propriedades = {
 
 export async function generateMetadata({ params }: Propriedades): Promise<Metadata> {
   const { slug } = await params
+  const titulo = criarTituloDeSlug(slug)
 
-  return {
-    title: `Categoria ${slug}`,
-    description: 'Ofertas e reviews organizados por categoria.',
-  }
+  return criarMetadataPagina({
+    caminho: `/categorias/${slug}`,
+    titulo: `Categoria em preparação: ${titulo}`,
+    descricao: 'Página de categoria aguardando publicação de ofertas e reviews no Ofertas 4You.',
+    noIndex: true,
+  })
 }
 
 export default async function PaginaCategoria({ params }: Propriedades) {
@@ -22,8 +26,8 @@ export default async function PaginaCategoria({ params }: Propriedades) {
 
   return (
     <PaginaSimples
-      titulo="Categoria em preparacao"
-      descricao={`A categoria "${slug}" sera preenchida automaticamente com produtos e reviews publicados.`}
+      titulo="Categoria em preparação"
+      descricao={`A categoria "${slug}" será preenchida automaticamente com produtos e reviews publicados.`}
     />
   )
 }

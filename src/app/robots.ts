@@ -1,14 +1,15 @@
 import type { MetadataRoute } from 'next'
 
-const urlSite = process.env.NEXT_PUBLIC_URL || 'http://localhost:3002'
+import { urlSite } from '@/utilitarios/seo'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin'],
+      disallow: ['/admin', '/api'],
     },
+    host: urlSite,
     sitemap: `${urlSite}/sitemap.xml`,
   }
 }

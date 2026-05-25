@@ -5,7 +5,7 @@ import { emitirAberturaPreferenciasCookies } from '@/utilitarios/consentimentoCo
 export function BotaoPreferenciasCookies() {
   return (
     <button className="botaoLinkRodape" onClick={emitirAberturaPreferenciasCookies} type="button">
-      Preferencias de cookies
+      Preferências de cookies
     </button>
   )
 }

@@ -10,6 +10,7 @@ export const Midias: CollectionConfig = {
     read: () => true,
   },
   admin: {
+    group: 'Editorial',
     useAsTitle: 'alt',
   },
   fields: [

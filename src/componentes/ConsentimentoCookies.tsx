@@ -78,7 +78,7 @@ function salvarConsentimento(decisao: DecisaoConsentimento) {
   try {
     window.localStorage.setItem(chaveConsentimentoCookies, JSON.stringify(registro))
   } catch {
-    // O navegador pode bloquear armazenamento local; ainda comunicamos a escolha da sessao.
+    // O navegador pode bloquear armazenamento local; ainda comunicamos a escolha da sessão.
   }
 
   preferenciasAbertas = false
@@ -133,16 +133,16 @@ export function ConsentimentoCookies() {
           >
             <div className="modalCookiesConteudo">
               <p className="chapeu">Privacidade</p>
-              <h2 id="titulo-cookies">Cookies e medicao de navegacao</h2>
+              <h2 id="titulo-cookies">Cookies e medição de navegação</h2>
               <p id="descricao-cookies">
                 Usamos cookies e tecnologias semelhantes para manter o site funcionando, medir
-                audiencia, entender interacoes com ferramentas como Google Analytics e Microsoft
+                audiência, entender interações com ferramentas como Google Analytics e Microsoft
                 Clarity e apoiar campanhas em plataformas como Google Ads e Meta Ads.
               </p>
               {decisaoAtual !== semDecisaoCookies ? (
                 <p className="estadoCookies">Escolha atual: cookies opcionais {rotuloDecisao}.</p>
               ) : null}
-              <Link href="/politica-de-privacidade">Ver politica de privacidade</Link>
+              <Link href="/politica-de-privacidade">Ver política de privacidade</Link>
             </div>
 
             <div className="modalCookiesAcoes">

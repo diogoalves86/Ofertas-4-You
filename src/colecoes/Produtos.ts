@@ -13,6 +13,7 @@ export const Produtos: CollectionConfig = {
     read: () => true,
   },
   admin: {
+    group: 'Catálogo',
     useAsTitle: 'titulo',
     defaultColumns: ['titulo', 'categoria', 'loja', 'destaque', '_status'],
   },

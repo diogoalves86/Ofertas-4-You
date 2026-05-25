@@ -4,7 +4,7 @@ O projeto possui um container separado chamado `cron-runner`.
 
 ## Objetivo
 
-Executar rotinas agendadas sem misturar tarefas de importacao, atualizacao e integracao com o
+Executar rotinas agendadas sem misturar tarefas de importação, atualização e integração com o
 servidor principal do site.
 
 ## O que existe hoje
@@ -21,22 +21,22 @@ Tarefa inicial:
 rotinas/tarefas/atualizarOfertas.ts
 ```
 
-A tarefa atual valida a comunicacao com a aplicacao pela rota interna `/saude` e deixa o ponto de
-entrada pronto para integracoes futuras.
+A tarefa atual valida a comunicação com a aplicação pela rota interna `/saude` e deixa o ponto de
+entrada pronto para integrações futuras.
 
 ## Agendamento
 
-O agendamento e configurado por:
+O agendamento é configurado por:
 
 ```txt
 CRON_ATUALIZAR_OFERTAS=0 */6 * * *
 ```
 
-Por padrao, a rotina fica preparada para executar a cada 6 horas.
+Por padrão, a rotina fica preparada para executar a cada 6 horas.
 
 ## Regras
 
-- Nao ha automacao de navegador neste projeto inicial.
-- O `cron-runner` nao possui dependencias de navegador.
+- Não há automação de navegador neste projeto inicial.
+- O `cron-runner` não possui dependências de navegador.
 - Rotinas futuras devem preferir APIs oficiais, Apify ou conectores externos.
-- Atualizacoes de conteudo devem preferir a API do Payload em vez de escrita direta no banco.
+- Atualizações de conteúdo devem preferir a API do Payload em vez de escrita direta no banco.
