@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { CartaoAnimado } from '@/componentes/CartaoAnimado'
 import { obterNomeRelacao, obterUrlMidia, type ProdutoResumo } from '@/dados/conteudoPublico'
 
 type Propriedades = {
@@ -14,7 +15,7 @@ export function CartaoProduto({ produto }: Propriedades) {
   const destinoExterno = destino.startsWith('http')
 
   return (
-    <article className="cartaoProduto">
+    <CartaoAnimado className="cartaoProduto">
       <Link className="miniaturaProduto" href={`/ofertas/${produto.slug}`} aria-label={produto.titulo}>
         {urlImagem ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -49,6 +50,6 @@ export function CartaoProduto({ produto }: Propriedades) {
           Ver oferta
         </a>
       </div>
-    </article>
+    </CartaoAnimado>
   )
 }

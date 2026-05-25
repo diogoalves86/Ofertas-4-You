@@ -1,5 +1,6 @@
 'use client'
 
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Link from 'next/link'
 import { useEffect, useSyncExternalStore } from 'react'
 
@@ -86,6 +87,7 @@ function salvarConsentimento(decisao: DecisaoConsentimento) {
 }
 
 export function ConsentimentoCookies() {
+  const reduzirMovimento = useReducedMotion()
   const estadoConsentimento = useSyncExternalStore(
     assinarMudancasConsentimento,
     obterEstadoConsentimento,
@@ -113,45 +115,55 @@ export function ConsentimentoCookies() {
     salvarConsentimento(decisao)
   }
 
-  if (!exibir) {
-    return null
-  }
-
   return (
-    <div className="modalCookies">
-      <section
-        aria-describedby="descricao-cookies"
-        aria-labelledby="titulo-cookies"
-        className="modalCookiesCaixa"
-        role="dialog"
-      >
-        <div className="modalCookiesConteudo">
-          <p className="chapeu">Privacidade</p>
-          <h2 id="titulo-cookies">Cookies e medicao de navegacao</h2>
-          <p id="descricao-cookies">
-            Usamos cookies e tecnologias semelhantes para manter o site funcionando, medir
-            audiencia, entender interacoes com ferramentas como Google Analytics e Microsoft Clarity
-            e apoiar campanhas em plataformas como Google Ads e Meta Ads.
-          </p>
-          {decisaoAtual !== semDecisaoCookies ? (
-            <p className="estadoCookies">Escolha atual: cookies opcionais {rotuloDecisao}.</p>
-          ) : null}
-          <Link href="/politica-de-privacidade">Ver politica de privacidade</Link>
-        </div>
-
-        <div className="modalCookiesAcoes">
-          <button
-            className="botaoCookiesSecundario"
-            onClick={() => decidir('recusado')}
-            type="button"
+    <AnimatePresence>
+      {exibir ? (
+        <motion.div
+          animate={{ opacity: 1, y: 0 }}
+          className="modalCookies"
+          exit={reduzirMovimento ? undefined : { opacity: 0, y: 10 }}
+          initial={reduzirMovimento ? false : { opacity: 0, y: 10 }}
+        >
+          <motion.section
+            aria-describedby="descricao-cookies"
+            aria-labelledby="titulo-cookies"
+            className="modalCookiesCaixa"
+            role="dialog"
+            whileHover={reduzirMovimento ? undefined : { y: -2 }}
           >
-            Recusar opcionais
-          </button>
-          <button className="botaoCookiesPrimario" onClick={() => decidir('aceito')} type="button">
-            Aceitar cookies
-          </button>
-        </div>
-      </section>
-    </div>
+            <div className="modalCookiesConteudo">
+              <p className="chapeu">Privacidade</p>
+              <h2 id="titulo-cookies">Cookies e medicao de navegacao</h2>
+              <p id="descricao-cookies">
+                Usamos cookies e tecnologias semelhantes para manter o site funcionando, medir
+                audiencia, entender interacoes com ferramentas como Google Analytics e Microsoft
+                Clarity e apoiar campanhas em plataformas como Google Ads e Meta Ads.
+              </p>
+              {decisaoAtual !== semDecisaoCookies ? (
+                <p className="estadoCookies">Escolha atual: cookies opcionais {rotuloDecisao}.</p>
+              ) : null}
+              <Link href="/politica-de-privacidade">Ver politica de privacidade</Link>
+            </div>
+
+            <div className="modalCookiesAcoes">
+              <button
+                className="botaoCookiesSecundario"
+                onClick={() => decidir('recusado')}
+                type="button"
+              >
+                Recusar opcionais
+              </button>
+              <button
+                className="botaoCookiesPrimario"
+                onClick={() => decidir('aceito')}
+                type="button"
+              >
+                Aceitar cookies
+              </button>
+            </div>
+          </motion.section>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
   )
 }

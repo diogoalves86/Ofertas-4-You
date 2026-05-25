@@ -3,6 +3,7 @@ import React from 'react'
 
 import { Cabecalho } from '@/componentes/Cabecalho'
 import { ConsentimentoCookies } from '@/componentes/ConsentimentoCookies'
+import { ProvedorAnimacoes } from '@/componentes/ProvedorAnimacoes'
 import { Rodape } from '@/componentes/Rodape'
 
 import './styles.css'
@@ -30,10 +31,12 @@ export default async function LayoutPublico(props: { children: React.ReactNode }
   return (
     <html lang="pt-BR">
       <body>
-        <Cabecalho />
-        <main>{children}</main>
-        <Rodape />
-        <ConsentimentoCookies />
+        <ProvedorAnimacoes>
+          <Cabecalho />
+          <main>{children}</main>
+          <Rodape />
+          <ConsentimentoCookies />
+        </ProvedorAnimacoes>
       </body>
     </html>
   )
