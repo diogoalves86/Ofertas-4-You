@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import React from 'react'
 
 import { Cabecalho } from '@/componentes/Cabecalho'
+import { ConsentimentoCookies } from '@/componentes/ConsentimentoCookies'
 import { Rodape } from '@/componentes/Rodape'
 
 import './styles.css'
@@ -32,6 +33,7 @@ export default async function LayoutPublico(props: { children: React.ReactNode }
         <Cabecalho />
         <main>{children}</main>
         <Rodape />
+        <ConsentimentoCookies />
       </body>
     </html>
   )

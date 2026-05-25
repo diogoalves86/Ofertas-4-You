@@ -9,6 +9,8 @@ const rotasFixas = [
   '/sobre',
   '/aviso-de-afiliado',
   '/politica-de-privacidade',
+  '/termos-de-uso',
+  '/exclusao-de-dados',
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import { BotaoPreferenciasCookies } from '@/componentes/BotaoPreferenciasCookies'
+
 export function Rodape() {
   return (
     <footer className="rodape">
@@ -11,6 +13,9 @@ export function Rodape() {
         <Link href="/sobre">Sobre</Link>
         <Link href="/aviso-de-afiliado">Aviso de afiliado</Link>
         <Link href="/politica-de-privacidade">Privacidade</Link>
+        <Link href="/termos-de-uso">Termos</Link>
+        <Link href="/exclusao-de-dados">Exclusao de dados</Link>
+        <BotaoPreferenciasCookies />
       </nav>
     </footer>
   )
