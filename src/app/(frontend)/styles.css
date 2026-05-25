@@ -1,0 +1,502 @@
+:root {
+  --cor-texto: #17202a;
+  --cor-suave: #5e6b78;
+  --cor-linha: #d9e2ec;
+  --cor-fundo: #f7f9fb;
+  --cor-superficie: #ffffff;
+  --cor-primaria: #0b7a5f;
+  --cor-primaria-escura: #075c49;
+  --cor-destaque: #e84f36;
+  --cor-amarela: #ffbf3f;
+  --cor-azul: #246bfe;
+  --sombra: 0 18px 45px rgba(23, 32, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+main {
+  min-height: 70vh;
+}
+
+.cabecalho,
+.rodape,
+.vitrineInicial,
+.secaoConteudo,
+.paginaSimples,
+.avisoAfiliado {
+  margin: 0 auto;
+  max-width: 1180px;
+  width: min(100% - 32px, 1180px);
+}
+
+.cabecalho {
+  align-items: center;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  padding: 22px 0;
+}
+
+.marca {
+  align-items: center;
+  display: inline-flex;
+  gap: 12px;
+}
+
+.marcaSimbolo {
+  align-items: center;
+  background: var(--cor-texto);
+  border-radius: 8px;
+  color: #fff;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 800;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.marca strong,
+.marca small {
+  display: block;
+}
+
+.marca small {
+  color: var(--cor-suave);
+  font-size: 0.76rem;
+}
+
+.navegacao {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.navegacao a,
+.cabecaSecao a,
+.linkLeitura {
+  border-radius: 999px;
+  color: var(--cor-suave);
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 9px 12px;
+}
+
+.navegacao a:hover,
+.cabecaSecao a:hover,
+.linkLeitura:hover {
+  background: #e9f4f0;
+  color: var(--cor-primaria-escura);
+}
+
+.vitrineInicial {
+  align-items: stretch;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+  padding: 22px 0 12px;
+}
+
+.chamadaPrincipal {
+  background:
+    linear-gradient(135deg, rgba(11, 122, 95, 0.94), rgba(36, 107, 254, 0.9)),
+    var(--cor-primaria);
+  border-radius: 8px;
+  color: #fff;
+  min-height: 420px;
+  padding: clamp(28px, 5vw, 58px);
+}
+
+.chapeu {
+  color: var(--cor-destaque);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.chamadaPrincipal .chapeu {
+  color: #ffe8a9;
+}
+
+.chamadaPrincipal h1 {
+  font-size: clamp(2.1rem, 5vw, 4.8rem);
+  line-height: 1;
+  margin: 0;
+  max-width: 780px;
+}
+
+.chamadaPrincipal p {
+  font-size: 1.05rem;
+  margin: 18px 0 0;
+  max-width: 650px;
+}
+
+.acoesHero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.botaoPrimario,
+.botaoSecundario {
+  align-items: center;
+  border-radius: 8px;
+  display: inline-flex;
+  font-weight: 800;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 18px;
+}
+
+.botaoPrimario {
+  background: var(--cor-primaria);
+  color: #fff;
+}
+
+.chamadaPrincipal .botaoPrimario {
+  background: #fff;
+  color: var(--cor-primaria-escura);
+}
+
+.botaoSecundario {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+
+.painelDestaque {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-linha);
+  border-radius: 8px;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 420px;
+  padding: 26px;
+}
+
+.seloPainel,
+.etiquetaDestaque,
+.linhaEtiquetas span {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 800;
+  min-height: 28px;
+  padding: 5px 10px;
+}
+
+.seloPainel,
+.etiquetaDestaque {
+  background: #fff4d5;
+  color: #7a4b00;
+  width: fit-content;
+}
+
+.painelDestaque > strong {
+  font-size: 1.95rem;
+  line-height: 1.1;
+  margin: 30px 0 10px;
+}
+
+.painelDestaque p {
+  color: var(--cor-suave);
+  margin: 0;
+}
+
+.metricasPainel {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 34px;
+}
+
+.metricasPainel span {
+  background: var(--cor-fundo);
+  border-radius: 8px;
+  color: var(--cor-suave);
+  display: block;
+  font-size: 0.78rem;
+  padding: 12px;
+}
+
+.metricasPainel strong {
+  color: var(--cor-texto);
+  display: block;
+  font-size: 1rem;
+}
+
+.avisoAfiliado {
+  background: #edf9f5;
+  border: 1px solid #bfe7da;
+  border-radius: 8px;
+  color: var(--cor-primaria-escura);
+  font-size: 0.95rem;
+  margin-top: 18px;
+  padding: 14px 16px;
+}
+
+.secaoConteudo {
+  padding: 54px 0 0;
+}
+
+.faixaEditorial {
+  padding-bottom: 54px;
+}
+
+.cabecaSecao {
+  align-items: end;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.cabecaSecao h1,
+.cabecaSecao h2,
+.cabecaPagina h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.gradeProdutos {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cartaoProduto,
+.cartaoAvaliacao {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-linha);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cartaoProduto {
+  display: flex;
+  flex-direction: column;
+}
+
+.miniaturaProduto {
+  align-items: center;
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(135deg, rgba(255, 191, 63, 0.8), rgba(232, 79, 54, 0.72)),
+    #f4c25b;
+  color: #3a2600;
+  display: flex;
+  font-size: 1.7rem;
+  font-weight: 900;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.miniaturaProduto img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.conteudoCartao {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 18px;
+}
+
+.linhaEtiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 28px;
+}
+
+.linhaEtiquetas span {
+  background: #eef3f8;
+  color: var(--cor-suave);
+}
+
+.cartaoProduto h3,
+.cartaoAvaliacao h3 {
+  font-size: 1.18rem;
+  line-height: 1.25;
+  margin: 14px 0 8px;
+}
+
+.cartaoProduto p,
+.cartaoAvaliacao p,
+.paginaSimples p,
+.conteudoTexto li {
+  color: var(--cor-suave);
+}
+
+.cartaoProduto p {
+  margin: 0 0 16px;
+}
+
+.rodapeCartao {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin: auto 0 14px;
+}
+
+.rodapeCartao strong {
+  color: var(--cor-primaria-escura);
+}
+
+.rodapeCartao span {
+  color: var(--cor-suave);
+  font-size: 0.9rem;
+}
+
+.cartaoProduto .botaoPrimario {
+  width: 100%;
+}
+
+.gradeAvaliacoes {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cartaoAvaliacao {
+  padding: 22px;
+}
+
+.cartaoAvaliacao p {
+  margin-bottom: 18px;
+}
+
+.linkLeitura {
+  padding-left: 0;
+}
+
+.paginaSimples {
+  padding: 56px 0;
+}
+
+.cabecaPagina {
+  max-width: 780px;
+}
+
+.conteudoTexto {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-linha);
+  border-radius: 8px;
+  margin-top: 24px;
+  max-width: 860px;
+  padding: 26px;
+}
+
+.conteudoTexto h2 {
+  margin-top: 0;
+}
+
+.rodape {
+  align-items: center;
+  border-top: 1px solid var(--cor-linha);
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  padding: 30px 0 40px;
+}
+
+.rodape p {
+  color: var(--cor-suave);
+  margin: 4px 0 0;
+}
+
+.rodape nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.rodape a {
+  color: var(--cor-suave);
+  font-weight: 700;
+}
+
+@media (max-width: 860px) {
+  .cabecalho,
+  .rodape,
+  .cabecaSecao {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vitrineInicial,
+  .gradeProdutos,
+  .gradeAvaliacoes {
+    grid-template-columns: 1fr;
+  }
+
+  .chamadaPrincipal,
+  .painelDestaque {
+    min-height: auto;
+  }
+
+  .navegacao {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .cabecalho,
+  .rodape,
+  .vitrineInicial,
+  .secaoConteudo,
+  .paginaSimples,
+  .avisoAfiliado {
+    width: min(100% - 22px, 1180px);
+  }
+
+  .metricasPainel {
+    grid-template-columns: 1fr;
+  }
+
+  .conteudoTexto,
+  .painelDestaque,
+  .conteudoCartao,
+  .cartaoAvaliacao {
+    padding: 18px;
+  }
+}
