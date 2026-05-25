@@ -26,7 +26,7 @@ export const Produtos: CollectionConfig = {
     {
       name: 'titulo',
       type: 'text',
-      label: 'Titulo',
+      label: 'Título',
       required: true,
     },
     campoSlug('titulo'),
@@ -40,7 +40,7 @@ export const Produtos: CollectionConfig = {
     {
       name: 'descricao',
       type: 'richText',
-      label: 'Descricao completa',
+      label: 'Descrição completa',
     },
     {
       name: 'categoria',

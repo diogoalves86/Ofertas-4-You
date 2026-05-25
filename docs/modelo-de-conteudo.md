@@ -2,6 +2,10 @@
 
 O Payload CMS organiza o conteúdo do Ofertas 4You em coleções e configurações globais.
 
+As labels do painel devem usar português do Brasil com acentos, para manter a experiência editorial
+profissional no admin. Slugs e nomes técnicos continuam sem acentos, conforme exigido por rotas,
+campos e integrações.
+
 ## Coleções
 
 ### Usuários

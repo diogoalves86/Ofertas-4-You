@@ -11,13 +11,13 @@ export const grupoSeo: Field = {
     {
       name: 'titulo',
       type: 'text',
-      label: 'Titulo SEO',
+      label: 'Título SEO',
       maxLength: 70,
     },
     {
       name: 'descricao',
       type: 'textarea',
-      label: 'Descricao SEO',
+      label: 'Descrição SEO',
       maxLength: 160,
     },
     {

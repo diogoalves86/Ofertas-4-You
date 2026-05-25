@@ -47,11 +47,18 @@ Quando o Payload não está disponível, o site público usa o conteúdo inicial
 O painel do Payload foi personalizado para o fluxo editorial do projeto:
 
 - branding do Ofertas 4You no logo e ícone;
-- botão "Ver site" no topo;
+- botão "Ver site" no topo e no rodapé da navegação, sempre com `noopener noreferrer`;
 - dashboard com saudação, métricas e atalhos para criar oferta, criar avaliação, acessar mídias e
   editar configurações;
+- métricas calculadas com as regras de acesso do Payload para o usuário logado;
 - grupos de navegação para Catálogo, Editorial e Sistema;
+- experiência responsiva para uso em desktop e smartphone;
+- Tailwind CSS v4 importado no admin por `src/app/(payload)/custom.scss`, com `@source` apontando
+  para `src/componentes/admin`;
 - estilos próprios em `src/app/(payload)/custom.scss`.
+
+As métricas do dashboard deduplicam apenas consultas simultâneas. Elas não mantêm cache persistente
+entre requisições, para evitar mostrar contagens antigas após mudanças de permissão.
 
 ## Como subir com Docker Compose
 
@@ -108,6 +115,7 @@ As páginas públicas usam:
 - [Modelo de conteúdo](docs/modelo-de-conteudo.md)
 - [SEO](docs/seo.md)
 - [Rotinas](docs/rotinas.md)
+- [Segurança](docs/seguranca.md)
 - [Histórico](docs/historico.md)
 
 ## Regra de manutenção

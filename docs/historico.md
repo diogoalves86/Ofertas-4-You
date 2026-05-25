@@ -39,3 +39,10 @@
 - Marcadas rotas placeholder sem conteúdo real como `noindex, follow`.
 - Atualizada documentação de arquitetura, SEO, modelo de conteúdo e README para refletir a nova
   implementação.
+- Atualizado o painel administrativo para usar Tailwind CSS v4 no admin, layout responsivo,
+  navegação mais completa, métricas acessíveis e links internos normalizados.
+- Reforçada a segurança do dashboard: métricas respeitam `overrideAccess: false` com o usuário
+  logado, sem cache persistente de resultado entre requisições.
+- Tornadas obrigatórias em runtime as variáveis `PAYLOAD_SECRET` e `DATABASE_URL`, com placeholders
+  não sensíveis apenas durante `next build`.
+- Adicionada documentação de segurança em `docs/seguranca.md`.

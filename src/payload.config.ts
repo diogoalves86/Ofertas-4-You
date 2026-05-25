@@ -18,6 +18,28 @@ import { migrations } from './migrations'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const placeholdersBuild = {
+  DATABASE_URL: 'postgres://localhost:5432/payload_build',
+  PAYLOAD_SECRET: 'payload-build-placeholder-secret',
+} as const
+
+const estaGerandoBuild = () =>
+  process.env.NEXT_PHASE === 'phase-production-build' && process.env.npm_lifecycle_event === 'build'
+
+const obterVariavelAmbienteObrigatoria = (nome: 'DATABASE_URL' | 'PAYLOAD_SECRET') => {
+  const valor = process.env[nome]
+
+  if (!valor) {
+    if (estaGerandoBuild()) {
+      return placeholdersBuild[nome]
+    }
+
+    throw new Error(`Variável de ambiente obrigatória ausente: ${nome}`)
+  }
+
+  return valor
+}
+
 export default buildConfig({
   admin: {
     user: Usuarios.slug,
@@ -40,17 +62,17 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Usuarios, Midias, Categorias, Lojas, Produtos, Avaliacoes, Paginas],
+  collections: [Produtos, Lojas, Categorias, Avaliacoes, Paginas, Midias, Usuarios],
   globals: [ConfiguracoesSite],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: obterVariavelAmbienteObrigatoria('PAYLOAD_SECRET'),
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     migrationDir: path.resolve(dirname, 'migrations'),
     pool: {
-      connectionString: process.env.DATABASE_URL || '',
+      connectionString: obterVariavelAmbienteObrigatoria('DATABASE_URL'),
     },
     prodMigrations: migrations,
   }),

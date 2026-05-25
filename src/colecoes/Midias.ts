@@ -3,8 +3,8 @@ import type { CollectionConfig } from 'payload'
 export const Midias: CollectionConfig = {
   slug: 'midias',
   labels: {
-    singular: 'Midia',
-    plural: 'Midias',
+    singular: 'Mídia',
+    plural: 'Mídias',
   },
   access: {
     read: () => true,

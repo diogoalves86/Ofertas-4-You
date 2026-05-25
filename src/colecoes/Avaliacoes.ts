@@ -6,8 +6,8 @@ import { grupoSeo } from '@/campos/grupoSeo'
 export const Avaliacoes: CollectionConfig = {
   slug: 'avaliacoes',
   labels: {
-    singular: 'Avaliacao',
-    plural: 'Avaliacoes',
+    singular: 'Avaliação',
+    plural: 'Avaliações',
   },
   access: {
     read: () => true,
@@ -26,7 +26,7 @@ export const Avaliacoes: CollectionConfig = {
     {
       name: 'titulo',
       type: 'text',
-      label: 'Titulo',
+      label: 'Título',
       required: true,
     },
     campoSlug('titulo'),
@@ -40,7 +40,7 @@ export const Avaliacoes: CollectionConfig = {
     {
       name: 'conteudo',
       type: 'richText',
-      label: 'Conteudo',
+      label: 'Conteúdo',
       required: true,
     },
     {

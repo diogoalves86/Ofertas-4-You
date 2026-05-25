@@ -35,6 +35,7 @@ A aplicação combina:
 - Postgres como banco persistente.
 - Motion para transições suaves na experiência pública.
 - Componentes próprios para personalizar o painel administrativo do Payload.
+- Tailwind CSS v4 também no admin do Payload, importado por `src/app/(payload)/custom.scss`.
 
 ## Frente pública
 
@@ -79,14 +80,26 @@ e `src/app/(payload)/custom.scss`.
 Customizações atuais:
 
 - logo e ícone do Ofertas 4You no painel;
-- ação "Ver site" no topo;
+- ação "Ver site" no topo e no rodapé da navegação, abrindo em nova aba com `noopener noreferrer`;
 - dashboard com saudação, métricas de produtos, avaliações, lojas e categorias;
 - atalhos para nova oferta, nova avaliação, biblioteca de mídias e configurações;
 - rodapé de navegação com assinatura de curadoria afiliada;
+- layout responsivo para smartphone, com ajustes de grid, navegação e redução de efeitos visuais
+  mais custosos em telas menores;
+- estilos do admin em `src/app/(payload)/custom.scss`, com `@import 'tailwindcss'` e `@source`
+  para preservar as classes usadas pelos componentes personalizados;
 - grupos de coleções no menu:
   - Catálogo: produtos, categorias e lojas;
   - Editorial: avaliações, mídias e páginas;
   - Sistema: usuários.
+
+As métricas do dashboard usam a Local API do Payload com `overrideAccess: false` e o usuário logado.
+Isso evita que o painel mostre contagens de documentos que aquele usuário não poderia ler. Para
+reduzir consultas duplicadas sob carregamentos simultâneos, existe deduplicação apenas enquanto a
+consulta está em andamento; não há cache persistente de resultado entre requisições.
+
+URLs internas do admin devem ser montadas normalizando barras iniciais e finais, porque
+`routes.admin` pode variar por ambiente. Essa regra evita links como `/admin//collections/...`.
 
 Sempre que componentes do painel forem alterados, rode `npm run generate:importmap` para manter
 `src/app/(payload)/admin/importMap.js` alinhado.
@@ -142,3 +155,5 @@ português do Brasil. Exceções são nomes exigidos por ferramentas, como `pack
 - Cards não devem levar para páginas vazias: quando não houver link parceiro, a página de oferta aponta para um guia relacionado.
 - Links afiliados externos devem usar `rel="nofollow sponsored noopener noreferrer"`.
 - O `cron-runner` não usa automação de navegador.
+- O dashboard do admin não deve exibir e-mail como fallback de saudação; quando não houver `nome`,
+  use uma saudação genérica para evitar exposição desnecessária de identificadores.

@@ -32,8 +32,8 @@ cron-runner -> postgres:5432
 - `POSTGRES_DB`: nome do banco.
 - `POSTGRES_USER`: usuário do banco.
 - `POSTGRES_PASSWORD`: senha do banco.
-- `DATABASE_URL`: conexão interna usada pelo Payload.
-- `PAYLOAD_SECRET`: segredo usado pelo Payload.
+- `DATABASE_URL`: conexão interna usada pelo Payload. Obrigatória em runtime.
+- `PAYLOAD_SECRET`: segredo usado pelo Payload. Obrigatória em runtime e deve ser forte.
 - `NEXT_PUBLIC_URL`: URL pública do site. Também alimenta canonicals, Open Graph, Twitter Card,
   sitemap, robots e JSON-LD. Deve apontar para o domínio final em produção.
 - `URL_INTERNA_APP`: URL usada pelo `cron-runner` para falar com o app.
@@ -55,6 +55,17 @@ docker compose up -d --build
 
 As imagens copiam o `.npmrc` junto com `package.json` e `package-lock.json` para garantir que
 `npm ci` use a mesma resolução de dependências dentro e fora do container.
+
+Durante `next build`, a configuração do Payload aceita placeholders não sensíveis para
+`DATABASE_URL` e `PAYLOAD_SECRET` quando essas variáveis não existem na etapa de build. Esses
+placeholders existem apenas para permitir a compilação da imagem sem embutir segredos reais. Em
+runtime, fora do `next build`, a aplicação falha se `DATABASE_URL` ou `PAYLOAD_SECRET` estiverem
+ausentes.
+
+Como algumas páginas tentam inicializar o Payload durante a geração estática, o build pode registrar
+um erro de conexão com Postgres quando o banco não está disponível na etapa de imagem. Esse log é
+esperado nesse cenário desde que o build termine com sucesso e o container em runtime receba as
+variáveis reais pelo `.env`.
 
 ## Banco e migrações
 
@@ -79,3 +90,7 @@ http://localhost:3002/saude
 
 Deve responder com status `ok`.
 Também valida a conexão com o Payload/Postgres e retorna `503` quando o banco não estiver pronto.
+
+Para conferir se o container não está usando placeholders de build em runtime, valide que
+`PAYLOAD_SECRET` e `DATABASE_URL` estão definidos no ambiente do serviço `app` e vieram do `.env`.
+Não imprima os valores completos dessas variáveis em logs.

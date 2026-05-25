@@ -51,7 +51,7 @@ export const Lojas: CollectionConfig = {
     {
       name: 'descricao',
       type: 'textarea',
-      label: 'Descricao',
+      label: 'Descrição',
     },
     {
       name: 'ativa',

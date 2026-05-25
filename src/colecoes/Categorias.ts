@@ -28,7 +28,7 @@ export const Categorias: CollectionConfig = {
     {
       name: 'descricao',
       type: 'textarea',
-      label: 'Descricao',
+      label: 'Descrição',
     },
     {
       name: 'tipo',
@@ -38,8 +38,8 @@ export const Categorias: CollectionConfig = {
       defaultValue: 'ambos',
       options: [
         { label: 'Produtos', value: 'produtos' },
-        { label: 'Avaliacoes', value: 'avaliacoes' },
-        { label: 'Produtos e avaliacoes', value: 'ambos' },
+        { label: 'Avaliações', value: 'avaliacoes' },
+        { label: 'Produtos e avaliações', value: 'ambos' },
       ],
     },
     {
