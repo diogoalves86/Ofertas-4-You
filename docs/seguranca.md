@@ -24,6 +24,8 @@ obrigatórias estiverem ausentes.
 - Links do painel que abrem nova aba devem usar `rel="noopener noreferrer"`.
 - O dashboard não deve usar e-mail como fallback de saudação. Se `nome` não existir, use saudação
   genérica.
+- O provedor `ProvedorAcessibilidadeAdmin` deve limitar-se a rótulos internos/ARIA do Payload e do
+  editor rico. Ele não deve injetar HTML nem transformar conteúdo vindo de usuário.
 
 ## Métricas do dashboard
 

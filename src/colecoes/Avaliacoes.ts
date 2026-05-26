@@ -79,6 +79,10 @@ export const Avaliacoes: CollectionConfig = {
       name: 'perguntas_frequentes',
       type: 'array',
       label: 'Perguntas frequentes',
+      labels: {
+        singular: 'pergunta frequente',
+        plural: 'perguntas frequentes',
+      },
       fields: [
         {
           name: 'pergunta',

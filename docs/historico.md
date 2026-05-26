@@ -1,5 +1,22 @@
 # Histórico
 
+## 2026-05-26
+
+- Refinado o painel administrativo do Payload com revisão completa de responsividade, espaçamento,
+  campos, tabelas, tema claro e tema escuro.
+- Ajustadas métricas do dashboard para diferenciar conteúdo publicado de cadastros: produtos e
+  avaliações publicados; lojas e categorias cadastradas.
+- Atualizados os atalhos do dashboard para priorizar nova avaliação, nova loja, nova categoria e
+  biblioteca de mídias, mantendo "Nova oferta" como CTA principal.
+- Adicionado `ProvedorAcessibilidadeAdmin` para corrigir rótulos internos/ARIA que o Payload ou o
+  editor rico ainda renderizam em inglês ou com termos pouco naturais.
+- Corrigidas labels de arrays no admin para botões como "Adicionar vantagem", "Adicionar ponto de
+  atenção" e "Adicionar pergunta frequente".
+- Melhorada a usabilidade mobile do menu administrativo com alvos de toque maiores e sem criar
+  rolagem horizontal.
+- Atualizada a documentação de README, arquitetura, modelo de conteúdo, segurança e histórico para
+  refletir a experiência atual do painel.
+
 ## 2026-05-25
 
 - Criada a base do projeto Ofertas 4You.

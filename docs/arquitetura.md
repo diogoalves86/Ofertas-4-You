@@ -74,35 +74,48 @@ A variável `DESABILITAR_PAYLOAD_PUBLICO=true` força esse comportamento.
 
 ## Painel administrativo
 
-O Payload usa customizações em `src/payload.config.ts`, `src/componentes/admin/PainelAdmin.tsx`
-e `src/app/(payload)/custom.scss`.
+O Payload usa customizações em `src/payload.config.ts`, `src/componentes/admin/PainelAdmin.tsx`,
+`src/componentes/admin/ProvedorAcessibilidadeAdmin.tsx` e `src/app/(payload)/custom.scss`.
 
 Customizações atuais:
 
 - logo e ícone do Ofertas 4You no painel;
 - ação "Ver site" no topo e no rodapé da navegação, abrindo em nova aba com `noopener noreferrer`;
-- dashboard com saudação, métricas de produtos, avaliações, lojas e categorias;
-- atalhos para nova oferta, nova avaliação, biblioteca de mídias e configurações;
+- dashboard com saudação, CTA principal para nova oferta, métricas de produtos, avaliações, lojas
+  e categorias;
+- métricas com rótulos de status: produtos e avaliações contam apenas documentos publicados,
+  enquanto lojas e categorias contam cadastros;
+- atalhos para nova avaliação, nova loja, nova categoria e biblioteca de mídias;
 - rodapé de navegação com assinatura de curadoria afiliada;
 - layout responsivo para smartphone, com ajustes de grid, navegação e redução de efeitos visuais
   mais custosos em telas menores;
+- alvos de toque do menu mobile com área mínima maior que o ícone visual, para melhorar o uso em
+  smartphone sem pesar o layout;
+- traduções em português do Brasil via `i18n` do Payload, complementadas por
+  `ProvedorAcessibilidadeAdmin` para rótulos internos/ARIA que ainda chegam em inglês ou com
+  termos pouco naturais, como notificações, menu, editor rico e ações de link;
 - estilos do admin em `src/app/(payload)/custom.scss`, com `@import 'tailwindcss'` e `@source`
   para preservar as classes usadas pelos componentes personalizados;
 - grupos de coleções no menu:
-  - Catálogo: produtos, categorias e lojas;
-  - Editorial: avaliações, mídias e páginas;
-  - Sistema: usuários.
+  - Catálogo: produtos, lojas e categorias;
+  - Editorial: avaliações, páginas e mídias;
+  - Sistema: usuários e configurações do site.
 
 As métricas do dashboard usam a Local API do Payload com `overrideAccess: false` e o usuário logado.
-Isso evita que o painel mostre contagens de documentos que aquele usuário não poderia ler. Para
-reduzir consultas duplicadas sob carregamentos simultâneos, existe deduplicação apenas enquanto a
-consulta está em andamento; não há cache persistente de resultado entre requisições.
+Isso evita que o painel mostre contagens de documentos que aquele usuário não poderia ler. Produtos
+e avaliações também filtram `_status = published`, alinhando o painel ao conteúdo realmente visível
+na frente pública. Para reduzir consultas duplicadas sob carregamentos simultâneos, existe
+deduplicação apenas enquanto a consulta está em andamento; não há cache persistente de resultado
+entre requisições.
 
 URLs internas do admin devem ser montadas normalizando barras iniciais e finais, porque
 `routes.admin` pode variar por ambiente. Essa regra evita links como `/admin//collections/...`.
 
 Sempre que componentes do painel forem alterados, rode `npm run generate:importmap` para manter
 `src/app/(payload)/admin/importMap.js` alinhado.
+
+Ao ajustar labels do admin, revise também `docs/modelo-de-conteudo.md`: os nomes exibidos no painel
+fazem parte da experiência editorial e precisam continuar naturais em português do Brasil.
 
 ## SEO e metadados
 
@@ -152,7 +165,9 @@ português do Brasil. Exceções são nomes exigidos por ferramentas, como `pack
 - Produtos físicos direcionam para marketplaces parceiros.
 - Produtos digitais podem direcionar para checkouts como Hotmart e Monetizze.
 - Conteúdo editorial é uma parte central do produto, não apenas apoio da vitrine.
-- Cards não devem levar para páginas vazias: quando não houver link parceiro, a página de oferta aponta para um guia relacionado.
+- Cards não devem levar para páginas vazias: ofertas cadastradas no Payload exigem link parceiro,
+  e a frente pública mantém fallback para guia relacionado em conteúdo legado ou fallback editorial
+  que eventualmente não tenha link.
 - Links afiliados externos devem usar `rel="nofollow sponsored noopener noreferrer"`.
 - O `cron-runner` não usa automação de navegador.
 - O dashboard do admin não deve exibir e-mail como fallback de saudação; quando não houver `nome`,

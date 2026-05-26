@@ -67,13 +67,13 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    usuarios: Usuario;
-    midias: Midia;
-    categorias: Categoria;
-    lojas: Loja;
     produtos: Produto;
+    lojas: Loja;
+    categorias: Categoria;
     avaliacoes: Avaliacoe;
     paginas: Pagina;
+    midias: Midia;
+    usuarios: Usuario;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -81,13 +81,13 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    usuarios: UsuariosSelect<false> | UsuariosSelect<true>;
-    midias: MidiasSelect<false> | MidiasSelect<true>;
-    categorias: CategoriasSelect<false> | CategoriasSelect<true>;
-    lojas: LojasSelect<false> | LojasSelect<true>;
     produtos: ProdutosSelect<false> | ProdutosSelect<true>;
+    lojas: LojasSelect<false> | LojasSelect<true>;
+    categorias: CategoriasSelect<false> | CategoriasSelect<true>;
     avaliacoes: AvaliacoesSelect<false> | AvaliacoesSelect<true>;
     paginas: PaginasSelect<false> | PaginasSelect<true>;
+    midias: MidiasSelect<false> | MidiasSelect<true>;
+    usuarios: UsuariosSelect<false> | UsuariosSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -133,104 +133,13 @@ export interface UsuarioAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "usuarios".
- */
-export interface Usuario {
-  id: number;
-  nome?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'usuarios';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "midias".
- */
-export interface Midia {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categorias".
- */
-export interface Categoria {
-  id: number;
-  nome: string;
-  /**
-   * Identificador usado na URL publica.
-   */
-  slug: string;
-  descricao?: string | null;
-  tipo: 'produtos' | 'avaliacoes' | 'ambos';
-  imagem?: (number | null) | Midia;
-  seo?: {
-    titulo?: string | null;
-    descricao?: string | null;
-    imagem?: (number | null) | Midia;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lojas".
- */
-export interface Loja {
-  id: number;
-  nome: string;
-  /**
-   * Identificador usado na URL publica.
-   */
-  slug: string;
-  tipo: 'marketplace' | 'produto_digital' | 'outro';
-  url_base?: string | null;
-  logo?: (number | null) | Midia;
-  descricao?: string | null;
-  ativa?: boolean | null;
-  seo?: {
-    titulo?: string | null;
-    descricao?: string | null;
-    imagem?: (number | null) | Midia;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "produtos".
  */
 export interface Produto {
   id: number;
   titulo: string;
   /**
-   * Identificador usado na URL publica.
+   * Identificador usado na URL pública.
    */
   slug: string;
   resumo: string;
@@ -258,7 +167,7 @@ export interface Produto {
   imagem?: (number | null) | Midia;
   imagens?: (number | Midia)[] | null;
   /**
-   * Exemplo: Mais vendido, Oferta relampago, Melhor custo-beneficio.
+   * Exemplo: Mais vendido, Oferta relâmpago, Melhor custo-benefício.
    */
   selo?: string | null;
   nota?: number | null;
@@ -287,13 +196,78 @@ export interface Produto {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categorias".
+ */
+export interface Categoria {
+  id: number;
+  nome: string;
+  /**
+   * Identificador usado na URL pública.
+   */
+  slug: string;
+  descricao?: string | null;
+  tipo: 'produtos' | 'avaliacoes' | 'ambos';
+  imagem?: (number | null) | Midia;
+  seo?: {
+    titulo?: string | null;
+    descricao?: string | null;
+    imagem?: (number | null) | Midia;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "midias".
+ */
+export interface Midia {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lojas".
+ */
+export interface Loja {
+  id: number;
+  nome: string;
+  /**
+   * Identificador usado na URL pública.
+   */
+  slug: string;
+  tipo: 'marketplace' | 'produto_digital' | 'outro';
+  url_base?: string | null;
+  logo?: (number | null) | Midia;
+  descricao?: string | null;
+  ativa?: boolean | null;
+  seo?: {
+    titulo?: string | null;
+    descricao?: string | null;
+    imagem?: (number | null) | Midia;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "avaliacoes".
  */
 export interface Avaliacoe {
   id: number;
   titulo: string;
   /**
-   * Identificador usado na URL publica.
+   * Identificador usado na URL pública.
    */
   slug: string;
   resumo: string;
@@ -343,7 +317,7 @@ export interface Pagina {
   id: number;
   titulo: string;
   /**
-   * Identificador usado na URL publica.
+   * Identificador usado na URL pública.
    */
   slug: string;
   resumo?: string | null;
@@ -373,6 +347,32 @@ export interface Pagina {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "usuarios".
+ */
+export interface Usuario {
+  id: number;
+  nome?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'usuarios';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -396,24 +396,16 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
-        relationTo: 'usuarios';
-        value: number | Usuario;
-      } | null)
-    | ({
-        relationTo: 'midias';
-        value: number | Midia;
-      } | null)
-    | ({
-        relationTo: 'categorias';
-        value: number | Categoria;
+        relationTo: 'produtos';
+        value: number | Produto;
       } | null)
     | ({
         relationTo: 'lojas';
         value: number | Loja;
       } | null)
     | ({
-        relationTo: 'produtos';
-        value: number | Produto;
+        relationTo: 'categorias';
+        value: number | Categoria;
       } | null)
     | ({
         relationTo: 'avaliacoes';
@@ -422,6 +414,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'paginas';
         value: number | Pagina;
+      } | null)
+    | ({
+        relationTo: 'midias';
+        value: number | Midia;
+      } | null)
+    | ({
+        relationTo: 'usuarios';
+        value: number | Usuario;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -467,89 +467,6 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "usuarios_select".
- */
-export interface UsuariosSelect<T extends boolean = true> {
-  nome?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "midias_select".
- */
-export interface MidiasSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categorias_select".
- */
-export interface CategoriasSelect<T extends boolean = true> {
-  nome?: T;
-  slug?: T;
-  descricao?: T;
-  tipo?: T;
-  imagem?: T;
-  seo?:
-    | T
-    | {
-        titulo?: T;
-        descricao?: T;
-        imagem?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lojas_select".
- */
-export interface LojasSelect<T extends boolean = true> {
-  nome?: T;
-  slug?: T;
-  tipo?: T;
-  url_base?: T;
-  logo?: T;
-  descricao?: T;
-  ativa?: T;
-  seo?:
-    | T
-    | {
-        titulo?: T;
-        descricao?: T;
-        imagem?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "produtos_select".
  */
 export interface ProdutosSelect<T extends boolean = true> {
@@ -591,6 +508,48 @@ export interface ProdutosSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lojas_select".
+ */
+export interface LojasSelect<T extends boolean = true> {
+  nome?: T;
+  slug?: T;
+  tipo?: T;
+  url_base?: T;
+  logo?: T;
+  descricao?: T;
+  ativa?: T;
+  seo?:
+    | T
+    | {
+        titulo?: T;
+        descricao?: T;
+        imagem?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categorias_select".
+ */
+export interface CategoriasSelect<T extends boolean = true> {
+  nome?: T;
+  slug?: T;
+  descricao?: T;
+  tipo?: T;
+  imagem?: T;
+  seo?:
+    | T
+    | {
+        titulo?: T;
+        descricao?: T;
+        imagem?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -645,6 +604,47 @@ export interface PaginasSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "midias_select".
+ */
+export interface MidiasSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "usuarios_select".
+ */
+export interface UsuariosSelect<T extends boolean = true> {
+  nome?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

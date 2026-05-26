@@ -27,6 +27,7 @@ import { AcaoVerSiteAdmin as AcaoVerSiteAdmin_820883e0be61d9788de3a5bcb2c9c25d }
 import { RodapeNavegacaoAdmin as RodapeNavegacaoAdmin_820883e0be61d9788de3a5bcb2c9c25d } from '@/componentes/admin/PainelAdmin'
 import { DashboardAdmin as DashboardAdmin_820883e0be61d9788de3a5bcb2c9c25d } from '@/componentes/admin/PainelAdmin'
 import { MarcaNavegacaoAdmin as MarcaNavegacaoAdmin_820883e0be61d9788de3a5bcb2c9c25d } from '@/componentes/admin/PainelAdmin'
+import { ProvedorAcessibilidadeAdmin as ProvedorAcessibilidadeAdmin_e505b2ae30b5842d011240f715983d2b } from '@/componentes/admin/ProvedorAcessibilidadeAdmin'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 /** @type import('payload').ImportMap */
@@ -86,5 +87,7 @@ export const importMap = {
   '@/componentes/admin/PainelAdmin#DashboardAdmin': DashboardAdmin_820883e0be61d9788de3a5bcb2c9c25d,
   '@/componentes/admin/PainelAdmin#MarcaNavegacaoAdmin':
     MarcaNavegacaoAdmin_820883e0be61d9788de3a5bcb2c9c25d,
+  '@/componentes/admin/ProvedorAcessibilidadeAdmin#ProvedorAcessibilidadeAdmin':
+    ProvedorAcessibilidadeAdmin_e505b2ae30b5842d011240f715983d2b,
   '@payloadcms/next/rsc#CollectionCards': CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1,
 }

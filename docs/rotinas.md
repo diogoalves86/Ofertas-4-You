@@ -24,6 +24,10 @@ rotinas/tarefas/atualizarOfertas.ts
 A tarefa atual valida a comunicação com a aplicação pela rota interna `/saude` e deixa o ponto de
 entrada pronto para integrações futuras.
 
+No Docker Compose, o `cron-runner` usa `URL_INTERNA_APP=http://app:3000`, apontando para o serviço
+`app` dentro da rede interna. Em execução local fora do Compose, a mesma variável pode ser ajustada
+para outro endereço.
+
 ## Agendamento
 
 O agendamento é configurado por:

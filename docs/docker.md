@@ -36,7 +36,9 @@ cron-runner -> postgres:5432
 - `PAYLOAD_SECRET`: segredo usado pelo Payload. Obrigatória em runtime e deve ser forte.
 - `NEXT_PUBLIC_URL`: URL pública do site. Também alimenta canonicals, Open Graph, Twitter Card,
   sitemap, robots e JSON-LD. Deve apontar para o domínio final em produção.
-- `URL_INTERNA_APP`: URL usada pelo `cron-runner` para falar com o app.
+- `URL_INTERNA_APP`: URL usada pelo `cron-runner` para falar com o app. No `docker-compose.yml`,
+  o serviço `cron-runner` define essa variável como `http://app:3000`, que é o endereço correto
+  dentro da rede Docker.
 - `CRON_ATUALIZAR_OFERTAS`: agendamento da rotina inicial.
 - `EXECUTAR_ROTINAS_AO_INICIAR`: executa a rotina ao iniciar o container quando `true`.
 - `DESABILITAR_PAYLOAD_PUBLICO`: quando `true`, o site público usa conteúdo fallback sem consultar

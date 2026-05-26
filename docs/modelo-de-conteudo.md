@@ -6,6 +6,10 @@ As labels do painel devem usar português do Brasil com acentos, para manter a e
 profissional no admin. Slugs e nomes técnicos continuam sem acentos, conforme exigido por rotas,
 campos e integrações.
 
+Campos do tipo array também devem definir `labels.singular` e `labels.plural` quando o plural
+regular ficaria estranho. Isso mantém botões como "Adicionar vantagem", "Adicionar ponto de
+atenção" e "Adicionar pergunta frequente" naturais no painel.
+
 ## Coleções
 
 ### Usuários
@@ -99,9 +103,12 @@ Uso na frente pública:
 - `categoria` e `loja` aparecem como etiquetas de contexto.
 - `imagem.alt` deve ser preenchido, pois é usado como texto alternativo e caption nos dados estruturados.
 - `vantagens` alimenta a seção "Quando essa opção faz sentido".
-- `desvantagens` alimenta a seção "Pontos de atenção".
+- `desvantagens` alimenta a seção "Pontos de atenção". No admin, a label exibida para esse campo é
+  "Pontos de atenção" para evitar uma leitura excessivamente negativa no fluxo editorial.
 - `nota` alimenta a avaliação editorial no JSON-LD quando existir.
-- `link_afiliado` define o CTA externo. Quando estiver ausente, a página aponta para um guia relacionado.
+- `link_afiliado` define o CTA externo e é obrigatório no cadastro do Payload. A frente pública
+  ainda mantém fallback para guia relacionado quando conteúdo legado ou fallback editorial não tiver
+  link, evitando destino vazio.
 - `destaque` controla a presença na home quando houver conteúdo publicado.
 
 Regra de SEO: `Offer` só deve ser gerado quando `link_afiliado` apontar para uma URL externa real.
@@ -137,6 +144,8 @@ Uso na frente pública:
 - `categoria`, `autor` e `tempo_leitura` aparecem como etiquetas do guia.
 - `imagem.alt` deve ser preenchido quando houver imagem editorial.
 - `perguntas_frequentes` alimenta a seção de FAQ e o JSON-LD `FAQPage`.
+- `perguntas_frequentes` deve manter labels singular/plural configuradas para que o painel use
+  "Adicionar pergunta frequente" em vez de uma pluralização automática estranha.
 - `publicado_em`, `createdAt` e `updatedAt` podem alimentar datas de `Article` e sitemap.
 - `produtos_relacionados` deve ser usado em evoluções futuras para CTAs mais específicos.
 
@@ -180,6 +189,8 @@ Itens fallback atuais:
 
 ### Configurações do site
 
+Aparece no grupo Sistema do painel.
+
 Campos principais:
 
 - `nome_site`
@@ -190,7 +201,7 @@ Campos principais:
 
 ## Regra editorial
 
-Toda oferta deve ter loja parceira definida e, quando houver CTA de compra, link afiliado claro.
+Toda oferta cadastrada no Payload deve ter loja parceira definida e link afiliado claro.
 Todo review deve poder apontar para produtos relacionados, ofertas ou chamadas de afiliado.
 
 Para manter confiança e SEO:

@@ -1,51 +1,77 @@
 import Image from 'next/image'
-import type { Document, Payload, ServerProps } from 'payload'
+import type { Document, Payload, ServerProps, Where } from 'payload'
 
 const rotasPrincipais = [
-  {
-    href: '/collections/produtos/create',
-    rotulo: 'Nova oferta',
-    texto: 'Produto, preço, loja e link de afiliado.',
-  },
   {
     href: '/collections/avaliacoes/create',
     rotulo: 'Nova avaliação',
     texto: 'Avaliação editorial com SEO e produtos relacionados.',
+    acao: 'Criar',
+  },
+  {
+    href: '/collections/lojas/create',
+    rotulo: 'Nova loja',
+    texto: 'Cadastre a origem da oferta antes de relacionar produtos.',
+    acao: 'Criar',
+  },
+  {
+    href: '/collections/categorias/create',
+    rotulo: 'Nova categoria',
+    texto: 'Organize ofertas e avaliações para navegação e SEO.',
+    acao: 'Criar',
   },
   {
     href: '/collections/midias',
     rotulo: 'Biblioteca de mídias',
     texto: 'Imagens para ofertas, lojas, categorias e páginas.',
-  },
-  {
-    href: '/globals/configuracoes-site',
-    rotulo: 'Configurações',
-    texto: 'Nome, descrição, aviso de afiliado e redes sociais.',
+    acao: 'Abrir',
   },
 ]
 
-const metricas = [
+type MetricaPainel = {
+  colecao: 'produtos' | 'avaliacoes' | 'lojas' | 'categorias'
+  descricao: string
+  href: string
+  rotulo: string
+  where?: Where
+}
+
+const metricas: MetricaPainel[] = [
   {
     colecao: 'produtos',
+    descricao: 'publicados',
     href: '/collections/produtos',
     rotulo: 'Produtos',
+    where: {
+      _status: {
+        equals: 'published',
+      },
+    },
   },
   {
     colecao: 'avaliacoes',
+    descricao: 'publicadas',
     href: '/collections/avaliacoes',
     rotulo: 'Avaliações',
+    where: {
+      _status: {
+        equals: 'published',
+      },
+    },
   },
   {
     colecao: 'lojas',
+    descricao: 'cadastradas',
     href: '/collections/lojas',
     rotulo: 'Lojas',
   },
   {
     colecao: 'categorias',
+    descricao: 'cadastradas',
     href: '/collections/categorias',
     rotulo: 'Categorias',
   },
-] as const
+]
 
 const formatadorMetricas = new Intl.NumberFormat('pt-BR')
 
@@ -68,6 +94,8 @@ const formatarContagem = (valor: number | null) =>
 
 const descreverContagem = (valor: number | null) =>
   valor === null ? 'indisponível' : formatadorMetricas.format(valor)
+
+const descreverRotuloParaAcao = (rotulo: string) => rotulo.toLocaleLowerCase('pt-BR')
 
 const usuarioEhDocumento = (user: ServerProps['user']): user is Document =>
   Boolean(user && typeof user === 'object')
@@ -107,12 +135,13 @@ const carregarContagens = async (
   const usuario = user
 
   return Promise.all(
-    metricas.map(async ({ colecao }) => {
+    metricas.map(async ({ colecao, where }) => {
       try {
         const resultado = await payload.count({
           collection: colecao,
           overrideAccess: false,
           user: usuario,
+          ...(where ? { where } : {}),
         })
         return resultado.totalDocs
       } catch {
@@ -230,11 +259,12 @@ export const DashboardAdmin = async ({ payload, user }: ServerProps) => {
             <a
               className="of4u-admin-stat"
               href={montarHref(adminRoute, metrica.href)}
-              aria-label={`${metrica.rotulo}: ${descreverContagem(contagem)}. Abrir lista.`}
+              aria-label={`${metrica.rotulo}: ${descreverContagem(contagem)} ${metrica.descricao}. Abrir lista de ${descreverRotuloParaAcao(metrica.rotulo)}.`}
               key={metrica.colecao}
             >
               <span>{metrica.rotulo}</span>
               <strong>{formatarContagem(contagem)}</strong>
+              <em>{metrica.descricao}</em>
             </a>
           )
         })}
@@ -252,6 +282,7 @@ export const DashboardAdmin = async ({ payload, user }: ServerProps) => {
           >
             <strong>{rota.rotulo}</strong>
             <span>{rota.texto}</span>
+            <em>{rota.acao}</em>
           </a>
         ))}
       </div>

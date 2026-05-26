@@ -65,12 +65,12 @@ export const Produtos: CollectionConfig = {
     {
       name: 'preco',
       type: 'text',
-      label: 'Preco',
+      label: 'Preço',
     },
     {
       name: 'preco_promocional',
       type: 'text',
-      label: 'Preco promocional',
+      label: 'Preço promocional',
     },
     {
       name: 'tipo_produto',
@@ -79,9 +79,9 @@ export const Produtos: CollectionConfig = {
       required: true,
       defaultValue: 'fisico',
       options: [
-        { label: 'Fisico', value: 'fisico' },
+        { label: 'Físico', value: 'fisico' },
         { label: 'Digital', value: 'digital' },
-        { label: 'Servico', value: 'servico' },
+        { label: 'Serviço', value: 'servico' },
       ],
     },
     {
@@ -102,7 +102,7 @@ export const Produtos: CollectionConfig = {
       type: 'text',
       label: 'Selo curto',
       admin: {
-        description: 'Exemplo: Mais vendido, Oferta relampago, Melhor custo-beneficio.',
+        description: 'Exemplo: Mais vendido, Oferta relâmpago, Melhor custo-benefício.',
       },
     },
     {
@@ -116,6 +116,10 @@ export const Produtos: CollectionConfig = {
       name: 'vantagens',
       type: 'array',
       label: 'Vantagens',
+      labels: {
+        singular: 'vantagem',
+        plural: 'vantagens',
+      },
       fields: [
         {
           name: 'texto',
@@ -128,7 +132,11 @@ export const Produtos: CollectionConfig = {
     {
       name: 'desvantagens',
       type: 'array',
-      label: 'Pontos de atencao',
+      label: 'Pontos de atenção',
+      labels: {
+        singular: 'ponto de atenção',
+        plural: 'pontos de atenção',
+      },
       fields: [
         {
           name: 'texto',

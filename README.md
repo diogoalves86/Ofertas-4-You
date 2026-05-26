@@ -48,11 +48,15 @@ O painel do Payload foi personalizado para o fluxo editorial do projeto:
 
 - branding do Ofertas 4You no logo e ícone;
 - botão "Ver site" no topo e no rodapé da navegação, sempre com `noopener noreferrer`;
-- dashboard com saudação, métricas e atalhos para criar oferta, criar avaliação, acessar mídias e
-  editar configurações;
-- métricas calculadas com as regras de acesso do Payload para o usuário logado;
+- dashboard com saudação, CTA para nova oferta, métricas e atalhos para avaliação, loja,
+  categoria e biblioteca de mídias;
+- métricas calculadas com as regras de acesso do Payload para o usuário logado, exibindo produtos
+  e avaliações publicados e cadastros de lojas e categorias;
 - grupos de navegação para Catálogo, Editorial e Sistema;
-- experiência responsiva para uso em desktop e smartphone;
+- experiência responsiva para uso em desktop e smartphone, incluindo campos, tabelas e alvos de
+  toque mais confortáveis no menu mobile;
+- idioma do admin em português do Brasil, com ajustes adicionais de rótulos do Payload e do editor
+  rico para evitar mensagens soltas em inglês;
 - Tailwind CSS v4 importado no admin por `src/app/(payload)/custom.scss`, com `@source` apontando
   para `src/componentes/admin`;
 - estilos próprios em `src/app/(payload)/custom.scss`.

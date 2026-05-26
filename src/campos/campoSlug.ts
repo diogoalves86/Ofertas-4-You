@@ -13,7 +13,7 @@ export const campoSlug = (campoOrigem: string): Field => ({
     beforeValidate: [preencherSlug(campoOrigem)],
   },
   admin: {
-    description: 'Identificador usado na URL publica.',
+    description: 'Identificador usado na URL pública.',
     position: 'sidebar',
   },
 })
